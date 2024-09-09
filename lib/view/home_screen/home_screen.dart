@@ -45,14 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddtocartScreen(
-                      title: "title",
-                      qty: "1",
-                      price: 10,
-                      onIncrement: () {},
-                      ondecrement: () {},
-                      onRemove: () {},
-                    ),
+                    builder: (context) => AddtocartScreen(),
                   ));
             },
             child: Icon(
@@ -171,6 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ));
                               },
                               child: ProductCard(
+                                  id: homeProv.dataObj[index].id,
                                   title:
                                       homeProv.dataObj[index].title.toString(),
                                   price: homeProv.dataObj[index].price ?? 0,

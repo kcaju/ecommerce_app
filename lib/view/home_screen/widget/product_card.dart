@@ -1,13 +1,16 @@
-import 'package:ecommerce_app/controller/cartscreen_controller.dart';
 import 'package:ecommerce_app/utils/color_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard(
-      {super.key, required this.title, required this.price, required this.img});
+      {super.key,
+      required this.title,
+      required this.price,
+      required this.img,
+      this.id});
   final String title, img;
   final num price;
+  final num? id;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -35,11 +38,9 @@ class _ProductCardState extends State<ProductCard> {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      "\$ ${widget.price}",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    SizedBox(
+                      height: 35,
+                    )
                   ],
                 ),
                 decoration: BoxDecoration(
@@ -72,33 +73,25 @@ class _ProductCardState extends State<ProductCard> {
             Positioned(
               bottom: 0,
               right: 0,
-              child: InkWell(
-                onTap: () {
-                  context.read<CartscreenController>().addToCart(
-                      title: widget.title,
-                      price: widget.price,
-                      image: widget.img);
-                },
-                child: Container(
-                  height: 50,
-                  width: 150,
-                  child: Center(
-                    child: Text(
-                      "Add to cart",
-                      style: TextStyle(
-                          color: ColorConstants.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
+              child: Container(
+                height: 50,
+                width: 150,
+                child: Center(
+                  child: Text(
+                    "\$ ${widget.price}",
+                    style: TextStyle(
+                        color: ColorConstants.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.elliptical(60, 50),
-                          bottomLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                          bottomRight: Radius.circular(15)),
-                      color: ColorConstants.red),
                 ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.elliptical(60, 50),
+                        bottomLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15)),
+                    color: ColorConstants.red),
               ),
             )
           ],

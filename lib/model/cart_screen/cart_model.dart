@@ -13,8 +13,12 @@ class CartModel {
   String? image;
   @HiveField(4)
   int qty;
+  @HiveField(5)
+  num? id;
+
   CartModel(
       {this.des,
+      this.id,
       required this.price,
       this.qty = 0,
       this.image,

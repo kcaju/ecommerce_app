@@ -2,6 +2,7 @@ import 'package:ecommerce_app/controller/cartscreen_controller.dart';
 import 'package:ecommerce_app/controller/productdetail_screen_controller.dart';
 import 'package:ecommerce_app/utils/animation_constants.dart';
 import 'package:ecommerce_app/utils/color_constants.dart';
+import 'package:ecommerce_app/view/addtocart_screen/addtocart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -185,11 +186,24 @@ class _ProductdetailsScreenState extends State<ProductdetailsScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        context.read<CartscreenController>().addToCart(
-                            title: prodProv.productDetailObj?.title ?? "",
-                            price: prodProv.productDetailObj?.price ?? 0,
-                            des: prodProv.productDetailObj?.description,
-                            image: prodProv.productDetailObj?.image ?? "");
+                        context
+                            .read<CartscreenController>()
+                            .addToCart(
+                                title: prodProv.productDetailObj?.title ?? "",
+                                price: prodProv.productDetailObj?.price ?? 0,
+                                des: prodProv.productDetailObj?.description,
+                                id: prodProv.productDetailObj?.id,
+                                context: context,
+                                image: prodProv.productDetailObj?.image ?? "")
+                            .then(
+                          (value) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddtocartScreen(),
+                                ));
+                          },
+                        );
                       },
                       child: Container(
                         height: 60,
